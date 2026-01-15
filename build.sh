@@ -129,7 +129,7 @@ compile() {
     make O=out ARCH="${ARCH}" "${DEFCONFIG}" ${CONFIG}"
     make -j"${PROCS}" O=out \
        ARCH="arm64" \
-       CC="clang" \
+       CC="${CCACHE} clang" \
        READELF="llvm-readelf" \
        OBJSIZE="llvm-size" \
        OBJDUMP="llvm-objdump" \
@@ -146,7 +146,7 @@ compile() {
        CROSS_COMPILE_ARM32="$ARM_DIR/bin/arm-arm-eabi-" \
        Image.gz-dtb \
        dtbo.img \
-       CC="${CCACHE} clang" \
+       dtb.img \
 
     if ! [ -f "${IMAGE}" && -f "${DTBO}" && -f "${DTB}"]; then
         finderr
