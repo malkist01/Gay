@@ -126,7 +126,7 @@ compile() {
         rm -rf out && mkdir -p out
     fi
 
-    make O=out ARCH="${ARCH}" "${DEFCONFIG}" ${CONFIG}"
+    make O=out ARCH="${ARCH}" "${DEFCONFIG}" "${CONFIG}"
     make -j"${PROCS}" O=out \
        ARCH="arm64" \
        CC="${CCACHE} clang" \
