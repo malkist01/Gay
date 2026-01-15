@@ -51,8 +51,8 @@ export KBUILD_COMPILER_STRING
 ARCH=arm64
 export ARCH
 export DEFCONFIG="vendor/trinket-perf_defconfig"
-export CONFIG="vendor/ginkgo.config"
-export KONFIG="vendor/xiaomi-trinket.config"
+config="ginkgo.config"
+kongig="xiaomi-trinket.config"
 export ARCH="arm64"
 export PATH="$CLANG_DIR/bin:$ARCH_DIR/bin:$ARM_DIR/bin:$PATH"
 export LD_LIBRARY_PATH="$CLANG_DIR/lib:$LD_LIBRARY_PATH"
@@ -127,7 +127,7 @@ compile() {
         rm -rf out && mkdir -p out
     fi
 
-    make O=out ARCH="${ARCH}" "${DEFCONFIG}" "${CONFIG}" "${KONFIG}"
+    make O=out ARCH="${ARCH}" "${DEFCONFIG}" "${{ env.config }}" "${{ env.konfig }}"
     make -j"${PROCS}" O=out \
        ARCH="arm64" \
        CC="${CCACHE} clang" \
